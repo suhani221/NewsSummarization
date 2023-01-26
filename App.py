@@ -70,15 +70,11 @@ def display_news(list_of_news, news_quantity):
 
 def run():
     st.title("News in Seconds")
-    image = Image.open('./Meta/newspaper.png')
 
-    col1, col2, col3 = st.columns([3, 5, 3])
+    col1,  col3 = st.columns([3, 3])
 
     with col1:
         st.write("")
-
-    with col2:
-        st.image(image, use_column_width=False)
 
     with col3:
         st.write("")
@@ -87,19 +83,19 @@ def run():
     if cat_op == category[0]:
         st.warning('Please select Type!!')
     elif cat_op == category[1]:
-        st.subheader("✅ Here is the Trending🔥 news for you")
+        st.subheader("Here is the Trending news for you")
         no_of_news = st.slider('Number of News:', min_value=5, max_value=25, step=1)
         news_list = fetch_top_news()
         display_news(news_list, no_of_news)
     elif cat_op == category[2]:
-        user_topic = st.text_input("Enter your Topic🔍")
+        user_topic = st.text_input("Enter your Topic")
         no_of_news = st.slider('Number of News:', min_value=5, max_value=15, step=1)
 
         if st.button("Search") and user_topic != '':
             user_topic_pr = user_topic.replace(' ', '')
             news_list = fetch_news_search_topic(topic=user_topic_pr)
             if news_list:
-                st.subheader("✅ Here are the some {} News for you".format(user_topic.capitalize()))
+                st.subheader(" Here are  some {} News for you".format(user_topic.capitalize()))
                 display_news(news_list, no_of_news)
             else:
                 st.error("No News found for {}".format(user_topic))
